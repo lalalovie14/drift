@@ -21,7 +21,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -33,7 +32,7 @@
     position: relative;
   }
 
-  /* GRAIN OVERLAY */
+  /* GRAIN */
   body::before {
     content: '';
     position: fixed;
@@ -44,737 +43,222 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   }
 
-  /* TYPOGRAPHY SYSTEM */
-  .label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-  }
+  .label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); }
 
   /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 28px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
     background: linear-gradient(to bottom, var(--bg) 60%, transparent);
   }
 
   .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 18px;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--text);
-    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: 18px; letter-spacing: 0.5em; text-transform: uppercase;
+    color: var(--text); text-decoration: none; cursor: pointer;
   }
-
-  .nav-link {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  .nav-link:hover { color: var(--text); }
 
   .nav-links { display: flex; gap: 36px; align-items: center; }
 
-  /* AUDIO TOGGLE */
   .audio-toggle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    background: none;
-    border: 0.5px solid var(--btn-border);
-    padding: 7px 16px;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 0;
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+    background: none; border: 0.5px solid var(--btn-border);
+    padding: 7px 16px; cursor: pointer; transition: all 0.3s;
   }
   .audio-toggle:hover { background: var(--btn); color: var(--text); }
   .audio-toggle.active { color: var(--text); border-color: var(--text); }
 
   /* DRIFT OCEAN */
-  #drift-ocean {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-  }
-
+  #drift-ocean { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
   .drift-name {
-    position: absolute;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 13px;
-    color: var(--text);
-    opacity: 0.06;
-    white-space: nowrap;
-    animation: drift-across linear infinite;
-    letter-spacing: 0.05em;
+    position: absolute; font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 300; font-size: 13px;
+    color: var(--text); opacity: 0.06; white-space: nowrap;
+    animation: drift-across linear infinite; letter-spacing: 0.05em;
   }
-
   @keyframes drift-across {
     from { transform: translateX(110vw); }
-    to { transform: translateX(-120vw); }
+    to   { transform: translateX(-120vw); }
   }
 
   /* PAGES */
-  .page {
-    display: none;
-    min-height: 100vh;
-    position: relative;
-    z-index: 10;
-  }
+  .page { display: none; min-height: 100vh; position: relative; z-index: 10; }
   .page.active { display: block; }
+  #home.active { display: flex; }
 
   /* HOME */
   #home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-    padding: 120px 48px 80px;
-  }
-  #home.active { display: flex; }
-
-  .hero-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 40px;
+    flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; text-align: center; padding: 120px 48px 80px;
   }
 
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(32px, 5vw, 54px);
-    line-height: 1.3;
-    color: var(--text);
-    margin-bottom: 16px;
-    letter-spacing: 0.02em;
-  }
+  .hero-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 40px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(32px, 5vw, 54px); line-height: 1.3; color: var(--text); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 16px; color: var(--text-muted); margin-bottom: 64px; letter-spacing: 0.05em; }
 
-  .hero-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 16px;
-    color: var(--text-muted);
-    margin-bottom: 64px;
-    letter-spacing: 0.05em;
-  }
-
-  .cta-row {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  .cta-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; justify-content: center; }
 
   .btn-primary {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text);
-    background: var(--btn);
-    border: 0.5px solid var(--btn-border);
-    padding: 16px 40px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.4s ease;
-    text-decoration: none;
-    display: inline-block;
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--text);
+    background: var(--btn); border: 0.5px solid var(--btn-border);
+    padding: 16px 40px; cursor: pointer; position: relative;
+    transition: all 0.4s ease; text-decoration: none; display: inline-block;
   }
-
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--bg2);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
+  .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--bg2); opacity: 0; transition: opacity 0.4s; }
   .btn-primary:hover::before { opacity: 0.5; }
   .btn-primary:hover { letter-spacing: 0.3em; }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-primary:disabled:hover { letter-spacing: 0.25em; }
+  .btn-primary:disabled:hover::before { opacity: 0; }
 
   .btn-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 8px;
+    font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted);
+    background: none; border: none; cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; gap: 10px; padding: 16px 8px;
   }
   .btn-text::after { content: '→'; transition: transform 0.3s; }
   .btn-text:hover { color: var(--text); }
   .btn-text:hover::after { transform: translateX(4px); }
 
-  .counter-line {
-    margin-top: 80px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  .counter-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 13px;
-    color: var(--accent);
-  }
+  .divider { width: 40px; height: 0.5px; background: var(--btn-border); margin: 0 auto 48px; }
 
-  /* DIVIDER */
-  .divider {
-    width: 40px;
-    height: 0.5px;
-    background: var(--btn-border);
-    margin: 0 auto 48px;
-  }
+  .counter-line { margin-top: 80px; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+  .counter-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--accent); }
 
-  /* FORM PAGE */
-  .page-inner {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 140px 48px 80px;
-  }
-
-  .page-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: 38px;
-    margin-bottom: 8px;
-    letter-spacing: 0.02em;
-  }
-
-  .page-subtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 56px;
-  }
+  /* INNER PAGES */
+  .page-inner { max-width: 680px; margin: 0 auto; padding: 140px 48px 80px; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 38px; margin-bottom: 8px; letter-spacing: 0.02em; }
+  .page-subtitle { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 56px; }
 
   .field-group { margin-bottom: 40px; }
+  .field-label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 12px; }
 
-  .field-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  input[type="text"],
-  input[type="date"],
-  textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
+  input[type="text"], input[type="date"], textarea {
+    width: 100%; background: transparent; border: none;
     border-bottom: 0.5px solid var(--btn-border);
-    padding: 12px 0;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.3s;
-    border-radius: 0;
-    -webkit-appearance: none;
+    padding: 12px 0; font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300; color: var(--text);
+    outline: none; transition: border-color 0.3s; border-radius: 0; -webkit-appearance: none;
   }
-  input[type="text"]:focus,
-  input[type="date"]:focus,
-  textarea:focus { border-bottom-color: var(--text); }
-  input::placeholder, textarea::placeholder {
-    color: var(--text-muted);
-    opacity: 0.5;
-    font-style: italic;
-  }
+  input[type="text"]:focus, input[type="date"]:focus, textarea:focus { border-bottom-color: var(--text); }
+  input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 0.5; font-style: italic; }
   textarea { resize: none; min-height: 140px; line-height: 1.7; }
 
   /* SEAL PICKER */
-  .seal-grid {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 4px;
-  }
-
+  .seal-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
   .seal-option {
-    width: 54px;
-    height: 54px;
-    border: 0.5px solid var(--btn-border);
-    background: var(--btn);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    position: relative;
+    width: 54px; height: 54px; border: 0.5px solid var(--btn-border);
+    background: var(--btn); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; position: relative;
   }
-  .seal-option:hover, .seal-option.selected {
-    border-color: var(--accent);
-    background: var(--bg2);
-  }
-  .seal-option.selected::after {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border: 0.5px solid var(--accent);
-  }
-
+  .seal-option:hover, .seal-option.selected { border-color: var(--accent); background: var(--bg2); }
+  .seal-option.selected::after { content: ''; position: absolute; inset: -3px; border: 0.5px solid var(--accent); }
   .seal-option svg { width: 28px; height: 28px; }
 
-  /* LOCATION ROW */
-  .location-note {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 8px;
-  }
+  .location-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--text-muted); margin-top: 8px; }
 
-  /* SEARCH PAGE */
-  .search-result {
-    border-top: 0.5px solid var(--bg2);
-    padding: 28px 0;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-  }
+  /* TOGGLE */
+  .reveal-toggle { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  .toggle-switch { width: 40px; height: 20px; background: var(--bg2); border: 0.5px solid var(--btn-border); border-radius: 10px; position: relative; cursor: pointer; transition: background 0.3s; flex-shrink: 0; }
+  .toggle-switch.on { background: var(--accent); }
+  .toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); transition: transform 0.3s; }
+  .toggle-switch.on::after { transform: translateX(20px); }
+
+  /* SEARCH RESULTS */
+  .search-result { border-top: 0.5px solid var(--bg2); padding: 28px 0; cursor: pointer; transition: all 0.3s; position: relative; }
   .search-result:hover { padding-left: 16px; }
-
-  .result-recipient {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-style: italic;
-    font-size: 26px;
-    margin-bottom: 6px;
-    letter-spacing: 0.02em;
-  }
-
-  .result-meta {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-  }
-
-  .result-preview {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    color: var(--text);
-    line-height: 1.6;
-    filter: blur(4px);
-    user-select: none;
-    transition: filter 0.5s;
-    max-height: 48px;
-    overflow: hidden;
-  }
+  .result-recipient { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-style: italic; font-size: 26px; margin-bottom: 6px; letter-spacing: 0.02em; }
+  .result-meta { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .result-preview { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--text); line-height: 1.6; filter: blur(4px); user-select: none; transition: filter 0.5s; max-height: 48px; overflow: hidden; }
   .search-result:hover .result-preview { filter: blur(2px); }
 
-  /* COUNTDOWN */
-  .countdown-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--btn);
-    border: 0.5px solid var(--btn-border);
-    padding: 6px 14px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 10px;
-  }
-  .countdown-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 13px;
-    color: var(--accent);
-  }
+  .countdown-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--btn); border: 0.5px solid var(--btn-border); padding: 6px 14px; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 10px; }
+  .countdown-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--accent); }
 
   /* LETTER VIEW */
-  #letter-view {
-    min-height: 100vh;
-    padding: 140px 48px 80px;
-    max-width: 680px;
-    margin: 0 auto;
-  }
+  #letter-view { min-height: 100vh; }
   #letter-view.active { display: block; }
 
-  /* SEAL */
-  .seal-container {
-    text-align: center;
-    margin: 48px 0;
-  }
+  .letter-view-inner { max-width: 680px; margin: 0 auto; padding: 0 48px 80px; }
 
+  .seal-container { text-align: center; margin: 48px 0; }
   .seal-wax {
-    width: 80px;
-    height: 80px;
-    background: var(--seal-gold);
-    border-radius: 50%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 2px 20px rgba(201,168,76,0.3);
-    position: relative;
-    overflow: hidden;
+    width: 80px; height: 80px; background: var(--seal-gold); border-radius: 50%;
+    margin: 0 auto; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 20px rgba(201,168,76,0.3); position: relative; overflow: hidden;
   }
-
-  .seal-wax::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), transparent 60%);
-    border-radius: 50%;
-  }
-
+  .seal-wax::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), transparent 60%); border-radius: 50%; }
   .seal-wax:hover { transform: scale(1.05); box-shadow: 0 4px 32px rgba(201,168,76,0.45); }
-
-  .seal-wax.breaking {
-    animation: seal-break 0.6s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
+  .seal-wax.breaking { animation: seal-break 0.6s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); }
   @keyframes seal-break {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    30% { transform: scale(1.15) rotate(-5deg); }
-    60% { transform: scale(0.9) rotate(8deg); opacity: 0.8; }
+    0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+    30%  { transform: scale(1.15) rotate(-5deg); }
+    60%  { transform: scale(0.9) rotate(8deg); opacity: 0.8; }
     100% { transform: scale(0) rotate(20deg); opacity: 0; height: 0; margin: 0; }
   }
-
   .seal-wax svg { width: 36px; height: 36px; color: rgba(255,255,255,0.85); }
-
-  .seal-hint {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 14px;
-  }
+  .seal-hint { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 14px; }
 
   /* SCROLL UNROLL */
-  .letter-scroll {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    transform-origin: top;
-  }
-
+  .letter-scroll { overflow: hidden; max-height: 0; transition: max-height 1.2s cubic-bezier(0.22, 1, 0.36, 1); transform-origin: top; }
   .letter-scroll.unrolled { max-height: 2000px; }
 
-  .letter-paper {
-    background: #FFFEF8;
-    border: 0.5px solid var(--bg2);
-    padding: 56px;
-    position: relative;
-    overflow: hidden;
-  }
+  .letter-paper { background: #FFFEF8; border: 0.5px solid var(--bg2); padding: 56px; position: relative; overflow: hidden; }
+  .letter-paper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--bg2), var(--seal-gold), var(--bg2)); opacity: 0.6; }
 
-  .letter-paper::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(to right, var(--bg2), var(--seal-gold), var(--bg2));
-    opacity: 0.6;
-  }
+  .letter-to { font-family: 'La Belle Aurore', cursive; font-size: 22px; color: var(--text-muted); margin-bottom: 32px; }
+  .letter-to span { font-size: 28px; color: var(--text); }
+  .letter-body { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 19px; line-height: 1.9; color: var(--text); white-space: pre-wrap; animation: fade-in 1s ease 0.4s both; }
+  @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  .letter-to {
-    font-family: 'La Belle Aurore', cursive;
-    font-size: 22px;
-    color: var(--text-muted);
-    margin-bottom: 32px;
-  }
-  .letter-to span {
-    font-size: 28px;
-    color: var(--text);
-  }
-
-  .letter-body {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 19px;
-    line-height: 1.9;
-    color: var(--text);
-    white-space: pre-wrap;
-    animation: fade-in 1s ease 0.4s both;
-  }
-
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .letter-footer {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 0.5px solid var(--bg2);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  .letter-origin {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .letter-date-sent {
-    font-family: 'La Belle Aurore', cursive;
-    font-size: 16px;
-    color: var(--text-muted);
-  }
+  .letter-footer { margin-top: 48px; padding-top: 24px; border-top: 0.5px solid var(--bg2); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+  .letter-origin { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+  .letter-date-sent { font-family: 'La Belle Aurore', cursive; font-size: 16px; color: var(--text-muted); }
 
   /* MODAL */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(255,253,245,0.92);
-    backdrop-filter: blur(8px);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-  }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(255,253,245,0.92); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 48px; }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: var(--bg);
-    border: 0.5px solid var(--bg2);
-    padding: 56px;
-    max-width: 540px;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 32px 80px rgba(44,44,44,0.08);
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 24px; right: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    transition: color 0.3s;
-  }
+  .modal { background: var(--bg); border: 0.5px solid var(--bg2); padding: 56px; max-width: 540px; width: 100%; position: relative; box-shadow: 0 32px 80px rgba(44,44,44,0.08); }
+  .modal-close { position: absolute; top: 24px; right: 24px; background: none; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; }
   .modal-close:hover { color: var(--text); }
 
-  /* SUCCESS */
-  .success-msg {
-    text-align: center;
-    padding: 48px 0;
-  }
-  .success-icon {
-    font-family: 'La Belle Aurore', cursive;
-    font-size: 48px;
-    color: var(--accent);
-    margin-bottom: 24px;
-    display: block;
-    animation: float 3s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  .success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-  .success-body {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    line-height: 2;
-  }
+  .success-msg { text-align: center; padding: 48px 0; }
+  .success-icon { font-family: 'La Belle Aurore', cursive; font-size: 48px; color: var(--accent); margin-bottom: 24px; display: block; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 28px; margin-bottom: 12px; }
+  .success-body { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); line-height: 2; }
 
   /* TOAST */
-  .toast {
-    position: fixed;
-    bottom: 48px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--text);
-    color: var(--bg);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 14px 32px;
-    z-index: 9998;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    pointer-events: none;
-  }
+  .toast { position: fixed; bottom: 48px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text); color: var(--bg); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 32px; z-index: 9998; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none; }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* BACK BUTTON */
-  .back-btn {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0;
-    margin-bottom: 56px;
-    transition: color 0.3s;
-  }
+  /* BACK BTN */
+  .back-btn { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 0; margin-bottom: 56px; transition: color 0.3s; }
   .back-btn::before { content: '←'; transition: transform 0.3s; }
   .back-btn:hover { color: var(--text); }
   .back-btn:hover::before { transform: translateX(-4px); }
 
-  /* REVEAL DATE ROW */
-  .reveal-toggle {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 8px;
-  }
+  /* NO RESULTS / LOADING */
+  .state-msg { text-align: center; padding: 80px 0; }
+  .state-msg p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--text-muted); margin-bottom: 8px; }
+  .state-msg small { font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); opacity: 0.6; }
 
-  .toggle-switch {
-    width: 40px;
-    height: 20px;
-    background: var(--bg2);
-    border: 0.5px solid var(--btn-border);
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
-    transition: background 0.3s;
-    flex-shrink: 0;
-  }
-  .toggle-switch.on { background: var(--accent); }
-  .toggle-switch::after {
-    content: '';
-    position: absolute;
-    top: 2px; left: 2px;
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: var(--bg);
-    transition: transform 0.3s;
-  }
-  .toggle-switch.on::after { transform: translateX(20px); }
-
-  /* NO RESULTS */
-  .no-results {
-    text-align: center;
-    padding: 80px 0;
-  }
-  .no-results p {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 22px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-  }
-  .no-results small {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.6;
-  }
-
-  /* SEARCH RESULTS LIST */
   #results-list { margin-top: 48px; }
 
-  /* SCROLL ANIMATION for the letter roll */
-  .scroll-line {
-    width: 100%;
-    height: 0.5px;
-    background: var(--bg2);
-    transform-origin: left;
-    animation: roll-in 0.8s ease forwards;
-  }
-  @keyframes roll-in {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
+  /* LOADING SPINNER */
+  .spinner { width: 24px; height: 24px; border: 0.5px solid var(--bg2); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* RESPONSIVE */
   @media (max-width: 600px) {
     nav { padding: 20px 24px; }
-    .page-inner, #letter-view { padding: 120px 24px 60px; }
+    .page-inner { padding: 120px 24px 60px; }
+    .letter-view-inner { padding: 0 24px 60px; }
     .letter-paper { padding: 32px 24px; }
     #home { padding: 100px 24px 60px; }
   }
@@ -782,26 +266,22 @@
 </head>
 <body>
 
-<!-- GRAIN + AMBIENT AUDIO -->
 <audio id="wave-audio" loop>
   <source src="https://cdn.pixabay.com/download/audio/2021/08/09/audio_7af38ccc1e.mp3" type="audio/mp3">
 </audio>
 
-<!-- DRIFT OCEAN -->
 <div id="drift-ocean"></div>
 
-<!-- NAV -->
 <nav>
-  <a class="logo" onclick="showPage('home')" style="cursor:pointer">D R I F T</a>
+  <span class="logo" onclick="showPage('home')">D R I F T</span>
   <div class="nav-links">
     <button class="audio-toggle" id="audio-btn" onclick="toggleAudio()">♪ Ambient</button>
   </div>
 </nav>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- ====== HOME PAGE ====== -->
+<!-- HOME -->
 <section class="page active" id="home">
   <p class="hero-eyebrow">A letter. A bottle. The open sea.</p>
   <h1 class="hero-title">A quiet place<br>for words left unsaid.</h1>
@@ -812,11 +292,11 @@
     <button class="btn-text" onclick="showPage('search')">Find Your Name</button>
   </div>
   <p class="counter-line">
-    <span class="counter-num" id="letter-count">0</span> &nbsp;letters currently drifting.
+    <span class="counter-num" id="letter-count">—</span>&nbsp; letters currently drifting.
   </p>
 </section>
 
-<!-- ====== WRITE PAGE ====== -->
+<!-- WRITE -->
 <section class="page" id="write">
   <div class="page-inner">
     <button class="back-btn" onclick="showPage('home')">Return Home</button>
@@ -835,9 +315,7 @@
 
     <div class="field-group">
       <label class="field-label">Choose a Wax Seal</label>
-      <div class="seal-grid" id="seal-grid">
-        <!-- seals rendered by JS -->
-      </div>
+      <div class="seal-grid" id="seal-grid"></div>
     </div>
 
     <div class="field-group">
@@ -854,11 +332,11 @@
       <p class="location-note" id="location-detect">Detecting your whereabouts…</p>
     </div>
 
-    <button class="btn-primary" onclick="sendLetter()" style="margin-top:16px">Seal &amp; Release the Letter</button>
+    <button class="btn-primary" id="send-btn" onclick="sendLetter()">Seal &amp; Release the Letter</button>
   </div>
 </section>
 
-<!-- ====== SEARCH PAGE ====== -->
+<!-- SEARCH -->
 <section class="page" id="search">
   <div class="page-inner">
     <button class="back-btn" onclick="showPage('home')">Return Home</button>
@@ -867,37 +345,41 @@
 
     <div class="field-group">
       <label class="field-label">A Name on the Water</label>
-      <input type="text" id="s-query" placeholder="type a nickname…" oninput="searchLetters()">
+      <input type="text" id="s-query" placeholder="type a nickname…" oninput="debounceSearch()">
     </div>
 
     <div id="results-list"></div>
   </div>
 </section>
 
-<!-- ====== LETTER VIEW ====== -->
+<!-- LETTER VIEW -->
 <section class="page" id="letter-view">
-  <button class="back-btn" onclick="showPage('search')" style="margin-bottom:0;padding-top:140px;padding-left:48px">Return to Search</button>
-
-  <div class="seal-container" id="seal-area">
-    <div class="seal-wax" id="seal-wax" onclick="breakSeal()">
-      <svg id="seal-svg" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
+  <div class="letter-view-inner">
+    <div style="padding-top:140px">
+      <button class="back-btn" onclick="showPage('search')">Return to Search</button>
     </div>
-    <p class="seal-hint">Click to break the seal</p>
-  </div>
 
-  <div class="letter-scroll" id="letter-scroll">
-    <div class="letter-paper">
-      <p class="letter-to">For &nbsp;<span id="lv-recipient"></span>,</p>
-      <div class="letter-body" id="lv-body"></div>
-      <div class="letter-footer">
-        <span class="letter-origin" id="lv-origin"></span>
-        <span class="letter-date-sent" id="lv-date"></span>
+    <div class="seal-container" id="seal-area">
+      <div class="seal-wax" id="seal-wax" onclick="breakSeal()">
+        <svg id="seal-svg" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
+      </div>
+      <p class="seal-hint" id="seal-hint">Click to break the seal</p>
+    </div>
+
+    <div class="letter-scroll" id="letter-scroll">
+      <div class="letter-paper">
+        <p class="letter-to">For &nbsp;<span id="lv-recipient"></span>,</p>
+        <div class="letter-body" id="lv-body"></div>
+        <div class="letter-footer">
+          <span class="letter-origin" id="lv-origin"></span>
+          <span class="letter-date-sent" id="lv-date"></span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ====== SUCCESS MODAL ====== -->
+<!-- SUCCESS MODAL -->
 <div class="modal-overlay" id="success-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">Close</button>
@@ -914,30 +396,78 @@
 </div>
 
 <script>
-// ——— STORAGE ———
-const STORE_KEY = 'drift_letters_v2';
+// ——— SUPABASE CONFIG ———
+const SUPABASE_URL = 'https://uyxfuqohenajlyyiaspn.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV5eGZ1cW9oZW5hamx5eWlhc3BuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxODUzNTUsImV4cCI6MjA5Mjc2MTM1NX0.TQkOdVhdVUqxBCyDUPfV2YkxgElDCr8gbNZEevGNFHg';
 
-function getLetters() {
-  try { return JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch(e) { return []; }
+async function sbFetch(path, options = {}) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1' + path, {
+    ...options,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': options.prefer || '',
+      ...(options.headers || {})
+    }
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(err);
+  }
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
 }
-function saveLetters(arr) {
-  localStorage.setItem(STORE_KEY, JSON.stringify(arr));
+
+async function getLetters() {
+  return await sbFetch('/letters?select=*&order=sent_at.desc') || [];
+}
+
+async function insertLetter(letter) {
+  return await sbFetch('/letters', {
+    method: 'POST',
+    prefer: 'return=representation',
+    body: JSON.stringify(letter)
+  });
+}
+
+async function searchByRecipient(q) {
+  const encoded = encodeURIComponent(q);
+  return await sbFetch(`/letters?select=*&recipient=ilike.*${encoded}*&order=sent_at.desc`) || [];
+}
+
+async function getCount() {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/letters?select=id', {
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Prefer': 'count=exact',
+      'Range': '0-0'
+    }
+  });
+  const range = res.headers.get('content-range');
+  if (range) {
+    const total = range.split('/')[1];
+    return total === '*' ? 0 : parseInt(total);
+  }
+  return 0;
 }
 
 // ——— SEALS ———
 const SEALS = [
-  { id: 'diamond', svg: '<polygon points="18,4 32,18 18,32 4,18" stroke-width="1.2"/>' },
-  { id: 'circle', svg: '<circle cx="18" cy="18" r="13" stroke-width="1.2"/>' },
+  { id: 'diamond',  svg: '<polygon points="18,4 32,18 18,32 4,18" stroke-width="1.2"/>' },
+  { id: 'circle',   svg: '<circle cx="18" cy="18" r="13" stroke-width="1.2"/>' },
   { id: 'triangle', svg: '<polygon points="18,5 31,29 5,29" stroke-width="1.2"/>' },
-  { id: 'cross', svg: '<line x1="18" y1="4" x2="18" y2="32" stroke-width="1.2"/><line x1="4" y1="18" x2="32" y2="18" stroke-width="1.2"/>' },
-  { id: 'star', svg: '<polygon points="18,3 21.5,13.5 33,13.5 23.5,20 27,30 18,23 9,30 12.5,20 3,13.5 14.5,13.5" stroke-width="1"/>' },
-  { id: 'hex', svg: '<polygon points="18,4 30,11 30,25 18,32 6,25 6,11" stroke-width="1.2"/>' },
+  { id: 'cross',    svg: '<line x1="18" y1="4" x2="18" y2="32" stroke-width="1.2"/><line x1="4" y1="18" x2="32" y2="18" stroke-width="1.2"/>' },
+  { id: 'star',     svg: '<polygon points="18,3 21.5,13.5 33,13.5 23.5,20 27,30 18,23 9,30 12.5,20 3,13.5 14.5,13.5" stroke-width="1"/>' },
+  { id: 'hex',      svg: '<polygon points="18,4 30,11 30,25 18,32 6,25 6,11" stroke-width="1.2"/>' },
 ];
 
-let selectedSeal = SEALS[0].id;
-let currentLetter = null;
+let selectedSeal = 'diamond';
 let capsuleOn = false;
 let audioPlaying = false;
+let currentLetter = null;
+let searchTimer = null;
 
 function renderSeals() {
   const grid = document.getElementById('seal-grid');
@@ -956,28 +486,26 @@ function renderSeals() {
 }
 
 // ——— DRIFT OCEAN ———
-const DRIFT_COUNT = 18;
-function spawnDrift() {
+async function spawnDrift() {
   const ocean = document.getElementById('drift-ocean');
   ocean.innerHTML = '';
-  const letters = getLetters();
-  const names = letters.map(l => l.recipient);
-  // pad with sample names if empty
-  const pool = names.length > 0 ? names : ['you', 'my love', 'old friend', 'stranger', 'dear one'];
+  let names = [];
+  try {
+    const letters = await sbFetch('/letters?select=recipient&order=sent_at.desc&limit=40') || [];
+    names = letters.map(l => l.recipient);
+  } catch(e) {}
+  if (!names.length) names = ['you', 'my love', 'old friend', 'dear one', 'starlight'];
 
-  for (let i = 0; i < DRIFT_COUNT; i++) {
-    const name = pool[Math.floor(Math.random() * pool.length)];
+  for (let i = 0; i < 20; i++) {
+    const name = names[Math.floor(Math.random() * names.length)];
     const el = document.createElement('span');
     el.className = 'drift-name';
     el.textContent = name;
-    const top = 5 + Math.random() * 88;
+    el.style.top = (5 + Math.random() * 88) + 'vh';
+    el.style.fontSize = (11 + Math.random() * 6) + 'px';
     const dur = 28 + Math.random() * 40;
-    const delay = -Math.random() * dur;
-    const size = 11 + Math.random() * 6;
-    el.style.top = top + 'vh';
-    el.style.fontSize = size + 'px';
     el.style.animationDuration = dur + 's';
-    el.style.animationDelay = delay + 's';
+    el.style.animationDelay = (-Math.random() * dur) + 's';
     ocean.appendChild(el);
   }
 }
@@ -988,10 +516,16 @@ function showPage(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
   if (id === 'home') updateCounter();
+  if (id === 'search') document.getElementById('results-list').innerHTML = '';
 }
 
-function updateCounter() {
-  document.getElementById('letter-count').textContent = getLetters().length.toLocaleString();
+async function updateCounter() {
+  try {
+    const n = await getCount();
+    document.getElementById('letter-count').textContent = n.toLocaleString();
+  } catch(e) {
+    document.getElementById('letter-count').textContent = '—';
+  }
 }
 
 // ——— AUDIO ———
@@ -1014,35 +548,28 @@ function toggleAudio() {
 
 // ——— LOCATION ———
 function detectLocation() {
-  // Use a friendly default — we don't require geolocation
-  const places = [
-    'a quiet place in the city', 'somewhere by the coast', 'across the Pacific',
-    'a warm corner of the world', 'beneath city lights', 'near still waters'
-  ];
+  const places = ['a quiet place in the city','somewhere by the coast','across the Pacific','a warm corner of the world','beneath city lights','near still waters','somewhere in the Philippines'];
   const p = places[Math.floor(Math.random() * places.length)];
-  document.getElementById('location-detect').textContent = `→ detected: ${p}`;
-  document.getElementById('f-location').placeholder = p;
+  document.getElementById('location-detect').textContent = '→ suggested: ' + p;
   document.getElementById('f-location').dataset.detected = p;
 }
 
 // ——— CAPSULE ———
 function toggleCapsule() {
   capsuleOn = !capsuleOn;
-  const toggle = document.getElementById('capsule-toggle');
-  const dateInput = document.getElementById('f-reveal');
-  toggle.classList.toggle('on', capsuleOn);
-  dateInput.style.display = capsuleOn ? 'block' : 'none';
-
+  document.getElementById('capsule-toggle').classList.toggle('on', capsuleOn);
+  const di = document.getElementById('f-reveal');
+  di.style.display = capsuleOn ? 'block' : 'none';
   if (capsuleOn) {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 7);
-    dateInput.min = new Date().toISOString().split('T')[0];
-    dateInput.value = tomorrow.toISOString().split('T')[0];
+    const d = new Date();
+    d.setDate(d.getDate() + 7);
+    di.min = new Date().toISOString().split('T')[0];
+    di.value = d.toISOString().split('T')[0];
   }
 }
 
 // ——— SEND LETTER ———
-function sendLetter() {
+async function sendLetter() {
   const recipient = document.getElementById('f-recipient').value.trim();
   const body = document.getElementById('f-body').value.trim();
   const location = document.getElementById('f-location').value.trim()
@@ -1051,30 +578,38 @@ function sendLetter() {
   const revealDate = capsuleOn ? document.getElementById('f-reveal').value : null;
 
   if (!recipient) { showToast('Please name your recipient.'); return; }
-  if (!body) { showToast('Your letter is still blank.'); return; }
+  if (!body)      { showToast('Your letter is still blank.'); return; }
 
-  const letter = {
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2),
-    recipient,
-    body,
-    seal: selectedSeal,
-    location,
-    revealDate,
-    sentAt: new Date().toISOString(),
-  };
+  const btn = document.getElementById('send-btn');
+  btn.disabled = true;
+  btn.textContent = 'Releasing…';
 
-  const letters = getLetters();
-  letters.push(letter);
-  saveLetters(letters);
+  const id = Date.now().toString(36) + Math.random().toString(36).slice(2);
 
-  // Reset form
-  document.getElementById('f-recipient').value = '';
-  document.getElementById('f-body').value = '';
-  document.getElementById('f-location').value = '';
-  if (capsuleOn) toggleCapsule();
+  try {
+    await insertLetter({
+      id,
+      recipient,
+      body,
+      seal: selectedSeal,
+      location,
+      reveal_date: revealDate || null,
+    });
 
-  spawnDrift();
-  document.getElementById('success-modal').classList.add('open');
+    document.getElementById('f-recipient').value = '';
+    document.getElementById('f-body').value = '';
+    document.getElementById('f-location').value = '';
+    if (capsuleOn) toggleCapsule();
+
+    spawnDrift();
+    document.getElementById('success-modal').classList.add('open');
+  } catch(e) {
+    showToast('Something went adrift. Please try again.');
+    console.error(e);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Seal & Release the Letter';
+  }
 }
 
 function closeModal() {
@@ -1083,80 +618,87 @@ function closeModal() {
 }
 
 // ——— SEARCH ———
-function searchLetters() {
-  const q = document.getElementById('s-query').value.trim().toLowerCase();
+function debounceSearch() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(doSearch, 350);
+}
+
+async function doSearch() {
+  const q = document.getElementById('s-query').value.trim();
   const list = document.getElementById('results-list');
 
   if (!q) { list.innerHTML = ''; return; }
 
-  const letters = getLetters();
-  const matches = letters.filter(l => l.recipient.toLowerCase().includes(q));
+  list.innerHTML = `<div class="state-msg"><div class="spinner"></div><small>Scanning the current…</small></div>`;
 
-  if (!matches.length) {
-    list.innerHTML = `<div class="no-results"><p>No letter has drifted here yet.</p><small>Perhaps it is still at sea.</small></div>`;
-    return;
-  }
+  try {
+    const matches = await searchByRecipient(q);
 
-  list.innerHTML = matches.map(l => {
-    const preview = l.body.slice(0, 120) + (l.body.length > 120 ? '…' : '');
+    if (!matches.length) {
+      list.innerHTML = `<div class="state-msg"><p>No letter has drifted here yet.</p><small>Perhaps it is still at sea.</small></div>`;
+      return;
+    }
+
     const now = new Date();
-    const reveal = l.revealDate ? new Date(l.revealDate) : null;
-    const isLocked = reveal && reveal > now;
-    const countdown = isLocked ? getCountdown(reveal) : null;
+    list.innerHTML = matches.map(l => {
+      const preview = l.body.slice(0, 120) + (l.body.length > 120 ? '…' : '');
+      const reveal = l.reveal_date ? new Date(l.reveal_date) : null;
+      const locked = reveal && reveal > now;
+      const countdown = locked ? getCountdown(reveal) : null;
 
-    return `
-      <div class="search-result" onclick="${isLocked ? '' : `openLetter('${l.id}')`}" style="${isLocked ? 'cursor:default' : ''}">
-        <p class="result-recipient">${escapeHtml(l.recipient)}</p>
-        <p class="result-meta">Sent ${formatDate(l.sentAt)} &nbsp;·&nbsp; from ${escapeHtml(l.location)}</p>
-        ${isLocked
-          ? `<div class="countdown-tag">
-               ☽ This letter is still drifting at sea. It arrives in
-               <span class="countdown-num">${countdown}</span>
-             </div>`
-          : `<div class="result-preview">${escapeHtml(preview)}</div>`
-        }
-      </div>`;
-  }).join('');
+      return `
+        <div class="search-result" onclick="${locked ? '' : `openLetter('${l.id}')`}" style="${locked ? 'cursor:default' : ''}">
+          <p class="result-recipient">${esc(l.recipient)}</p>
+          <p class="result-meta">Sent ${formatDate(l.sent_at)} &nbsp;·&nbsp; from ${esc(l.location)}</p>
+          ${locked
+            ? `<div class="countdown-tag">☽ This letter is still drifting at sea. It arrives in <span class="countdown-num">${countdown}</span></div>`
+            : `<div class="result-preview">${esc(preview)}</div>`
+          }
+        </div>`;
+    }).join('');
+
+  } catch(e) {
+    list.innerHTML = `<div class="state-msg"><p>The sea is restless.</p><small>Could not reach the current. Try again.</small></div>`;
+    console.error(e);
+  }
 }
 
-function getCountdown(revealDate) {
-  const diff = revealDate - new Date();
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+function getCountdown(d) {
+  const diff = d - new Date();
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
   if (days > 0) return `${days} day${days !== 1 ? 's' : ''}`;
   if (hours > 0) return `${hours} hour${hours !== 1 ? 's' : ''}`;
   return 'very soon';
 }
 
 // ——— OPEN LETTER ———
-function openLetter(id) {
-  const letters = getLetters();
-  const letter = letters.find(l => l.id === id);
-  if (!letter) return;
+async function openLetter(id) {
+  // fetch from supabase by id
+  let letter;
+  try {
+    const results = await sbFetch(`/letters?id=eq.${id}&select=*`);
+    letter = results && results[0];
+  } catch(e) { showToast('Could not retrieve the letter.'); return; }
+  if (!letter) { showToast('Letter not found.'); return; }
 
   currentLetter = letter;
 
-  // Set seal svg
   const seal = SEALS.find(s => s.id === letter.seal) || SEALS[0];
   document.getElementById('seal-svg').innerHTML = seal.svg;
 
-  // Reset scroll
   const scroll = document.getElementById('letter-scroll');
   scroll.classList.remove('unrolled');
 
-  // Set content
   document.getElementById('lv-recipient').textContent = letter.recipient;
   document.getElementById('lv-body').textContent = letter.body;
-  document.getElementById('lv-origin').textContent = `Sent from ${letter.location}`;
-  document.getElementById('lv-date').textContent = formatDateLong(letter.sentAt);
+  document.getElementById('lv-origin').textContent = 'Sent from ' + letter.location;
+  document.getElementById('lv-date').textContent = formatDate(letter.sent_at);
 
-  // Reset seal
   const wax = document.getElementById('seal-wax');
   wax.classList.remove('breaking');
   wax.style.display = 'flex';
-
-  document.getElementById('seal-area').style.display = 'block';
-  document.querySelector('#letter-view .back-btn').style.paddingLeft = '48px';
+  document.getElementById('seal-hint').style.display = 'block';
 
   showPage('letter-view');
 }
@@ -1164,29 +706,20 @@ function openLetter(id) {
 function breakSeal() {
   const wax = document.getElementById('seal-wax');
   wax.classList.add('breaking');
-
   setTimeout(() => {
     wax.style.display = 'none';
-    document.getElementById('seal-area').querySelector('.seal-hint').style.display = 'none';
-
-    const scroll = document.getElementById('letter-scroll');
-    scroll.classList.add('unrolled');
+    document.getElementById('seal-hint').style.display = 'none';
+    document.getElementById('letter-scroll').classList.add('unrolled');
   }, 550);
 }
 
 // ——— HELPERS ———
-function escapeHtml(str) {
+function esc(str) {
   return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function formatDate(iso) {
-  const d = new Date(iso);
-  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-}
-
-function formatDateLong(iso) {
-  const d = new Date(iso);
-  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  return new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 }
 
 function showToast(msg) {
@@ -1202,10 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
   spawnDrift();
   updateCounter();
   detectLocation();
-
-  // Set min date for date input
-  const today = new Date().toISOString().split('T')[0];
-  document.getElementById('f-reveal').min = today;
+  document.getElementById('f-reveal').min = new Date().toISOString().split('T')[0];
 });
 </script>
 </body>
